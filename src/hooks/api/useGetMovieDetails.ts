@@ -6,19 +6,15 @@ import {AxiosContext} from '../../provider/Axios';
 import {Movie} from '../../types/api.type';
 import {ReactQueryKeys} from '../../types/reactquery.type';
 
-interface IResponse {
-  results: Movie[];
-}
-
-const useGetMovies = (page: number) => {
+const useGetMovieDetails = (movieId: number) => {
   const axios = useContext(AxiosContext);
   const {API_URL, API_KEY} = Config;
-  return useQuery([ReactQueryKeys.GET_POPULAR_MOVIES, page], async () => {
-    const response = await axios.api.get<IResponse>(
-      `${API_URL}/popular?api_key=${API_KEY}&page=${page}`,
+  return useQuery([ReactQueryKeys.GET_POPULAR_MOVIES, movieId], async () => {
+    const response = await axios.api.get<Movie>(
+      `${API_URL}/${movieId}?api_key=${API_KEY}`,
     );
-    return response.data.results || [];
+    return response.data;
   });
 };
 
-export default useGetMovies;
+export default useGetMovieDetails;

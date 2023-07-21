@@ -1,33 +1,31 @@
-import React, {useEffect, useMemo, useState} from 'react';
-import {StyleSheet, Image} from 'react-native';
 import {useNavigation} from '@react-navigation/native';
-import {FlatList, Spinner, Text} from 'native-base';
+import {Box, FlatList, Spinner, Text} from 'native-base';
+import React, {useEffect, useMemo, useState} from 'react';
+import {StyleSheet, Image, TouchableOpacity} from 'react-native';
 import Config from 'react-native-config';
-import {SafeAreaView} from 'react-native-safe-area-context';
 
-import {Header} from '../components/Header';
-import useGetMovies from '../hooks/api/useGetMovies';
-import {Movie} from '../types/api.type';
 import {APP_IMAGES} from '../../assets/images';
+import {Header} from '../components';
+import useGetMovies from '../hooks/api/useGetMovies';
+import {SearchScreenNavigationProp} from '../navigation/RootNavigator';
+import {Movie} from '../types/api.type';
 
 function SearchScreen() {
   const [page, setPage] = useState(1);
   const [endReached, setEndReached] = useState(false);
-  const [movieList, setMovieList] = useState<Array<Movie[]>>([]);
+  const [movieList, setMovieList] = useState<Movie[][]>([]);
 
-  const navigation = useNavigation();
+  const navigation = useNavigation<SearchScreenNavigationProp>();
   const {data, isLoading, isFetched, isError} = useGetMovies(page);
-
   useEffect(() => {
     if (isFetched && data && !isError) {
-      const updated = [...movieList];
-      updated[page - 1] = data;
-      setMovieList(updated);
+      movieList[page - 1] = data;
+      setMovieList(movieList);
       if (data.length < 20) {
         setEndReached(true);
       }
     }
-  }, [isFetched, data, isError]);
+  }, [isFetched, data, isError, movieList, page]);
 
   const getMovieList = useMemo(() => {
     let list: Movie[] = [];
@@ -44,18 +42,26 @@ function SearchScreen() {
     setPage(page + 1);
   };
 
+  const onPressMovieItem = (item: Movie) => {
+    navigation.navigate('Details', {movieId: item.id});
+  };
+
   const renderMovieItem = ({item}: {item: Movie}) => {
     return (
-      <Image
-        source={{uri: `${Config.IMAGE_ROOT_PATH}${item.poster_path}`}}
-        defaultSource={APP_IMAGES.defaultMovie}
-        style={styles.movie}
-      />
+      <TouchableOpacity
+        onPress={() => onPressMovieItem(item)}
+        style={styles.movieItemWrapper}>
+        <Image
+          source={{uri: `${Config.IMAGE_ROOT_PATH}${item.poster_path}`}}
+          defaultSource={APP_IMAGES.defaultMovie}
+          style={styles.movie}
+        />
+      </TouchableOpacity>
     );
   };
 
   return (
-    <SafeAreaView>
+    <Box flex={1}>
       <Header title="Pop Movies" />
       <FlatList
         ListEmptyComponent={isLoading ? null : <Text>No movies</Text>}
@@ -69,7 +75,7 @@ function SearchScreen() {
         onEndReached={loadMoreMovies}
         contentContainerStyle={styles.scroll}
       />
-    </SafeAreaView>
+    </Box>
   );
 }
 
@@ -77,10 +83,13 @@ const styles = StyleSheet.create({
   scroll: {
     paddingBottom: 100,
   },
-  movie: {
+  movieItemWrapper: {
     width: '50%',
+  },
+  movie: {
+    width: '100%',
+    paddingBottom: '160%',
     resizeMode: 'cover',
-    paddingBottom: '80%',
   },
 });
 

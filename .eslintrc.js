@@ -1,6 +1,6 @@
 module.exports = {
   root: true,
-  extends: ['@react-native-community'],
+  extends: ['universe', 'plugin:react-hooks/recommended'],
   parser: '@typescript-eslint/parser',
   plugins: ['react', 'react-hooks', '@typescript-eslint', 'prettier'],
   overrides: [
