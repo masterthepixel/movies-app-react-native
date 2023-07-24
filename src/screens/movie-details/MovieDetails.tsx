@@ -13,11 +13,11 @@ import React from 'react';
 import {Image, StyleSheet} from 'react-native';
 import Config from 'react-native-config';
 
-import {APP_IMAGES} from '../../assets/images';
-import {Header} from '../components';
-import useGetMovieDetails from '../hooks/api/useGetMovieDetails';
-import {DetailsScreenRouteProp} from '../navigation/RootNavigator';
-import {ds} from '../utils/responsive';
+import {APP_IMAGES} from '../../../assets/images';
+import {Header} from '../../components';
+import useGetMovieDetails from '../../hooks/api/useGetMovieDetails';
+import {DetailsScreenRouteProp} from '../../navigation/RootNavigator';
+import {ds} from '../../utils/responsive';
 
 function DetailsScreen() {
   const route = useRoute<DetailsScreenRouteProp>();
@@ -25,7 +25,7 @@ function DetailsScreen() {
   const {data, isLoading} = useGetMovieDetails(movieId);
 
   return (
-    <Box flex={1}>
+    <Box flex={1} testID="Movie-Details">
       <Header title="Movie Details" />
       {isLoading && (
         <Center flex={1}>
@@ -45,6 +45,7 @@ function DetailsScreen() {
                 source={{uri: `${Config.IMAGE_ROOT_PATH}${data.poster_path}`}}
                 defaultSource={APP_IMAGES.defaultMovie}
                 style={styles.image}
+                testID={`movie-details-image-${data.id}`}
               />
               <VStack flex={1} ml={6} justifyContent="space-between">
                 <Text color="black" fontSize={'md'}>

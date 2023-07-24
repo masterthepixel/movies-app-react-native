@@ -8,15 +8,10 @@
 import {QueryClient, QueryClientProvider} from '@tanstack/react-query';
 import {NativeBaseProvider} from 'native-base';
 import React from 'react';
-import {LogBox} from 'react-native';
 
+import {AxiosProvider} from './src/context/Axios';
 import RootNavigator from './src/navigation/RootNavigator';
-import {AxiosProvider} from './src/provider/Axios';
 import {theme} from './src/utils/theme';
-
-LogBox.ignoreLogs([
-  'In React 18, SSRProvider is not necessary and is a noop. You can remove it from your app.',
-]);
 
 const queryClient = new QueryClient({
   defaultOptions: {

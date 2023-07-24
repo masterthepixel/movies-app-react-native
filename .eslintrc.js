@@ -3,6 +3,7 @@ module.exports = {
   extends: ['universe', 'plugin:react-hooks/recommended'],
   parser: '@typescript-eslint/parser',
   plugins: ['react', 'react-hooks', '@typescript-eslint', 'prettier'],
+  ignorePatterns: ['metro.config.js'],
   overrides: [
     {
       files: ['*.ts', '*.tsx'],

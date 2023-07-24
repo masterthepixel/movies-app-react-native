@@ -1,13 +1,13 @@
 import {NavigationContainer, RouteProp} from '@react-navigation/native';
 import {
-  createNativeStackNavigator,
-  NativeStackNavigationProp,
-} from '@react-navigation/native-stack';
+  createStackNavigator,
+  StackNavigationProp,
+} from '@react-navigation/stack';
 import React from 'react';
 import {SafeAreaView} from 'react-native-safe-area-context';
 
-import DetailsScreen from '../screens/Details';
-import SearchScreen from '../screens/Search';
+import DetailsScreen from '../screens/movie-details/MovieDetails';
+import SearchScreen from '../screens/movie-search/MovieSearch';
 
 export type RootStackParamList = {
   Search: undefined;
@@ -16,8 +16,8 @@ export type RootStackParamList = {
   };
 };
 
-const Stack = createNativeStackNavigator<RootStackParamList>();
-export type SearchScreenNavigationProp = NativeStackNavigationProp<
+const Stack = createStackNavigator<RootStackParamList>();
+export type SearchScreenNavigationProp = StackNavigationProp<
   RootStackParamList,
   'Details'
 >;

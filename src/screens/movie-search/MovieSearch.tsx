@@ -4,11 +4,11 @@ import React, {useEffect, useMemo, useState} from 'react';
 import {StyleSheet, Image, TouchableOpacity} from 'react-native';
 import Config from 'react-native-config';
 
-import {APP_IMAGES} from '../../assets/images';
-import {Header} from '../components';
-import useGetMovies from '../hooks/api/useGetMovies';
-import {SearchScreenNavigationProp} from '../navigation/RootNavigator';
-import {Movie} from '../types/api.type';
+import {APP_IMAGES} from '../../../assets/images';
+import {Header} from '../../components';
+import useGetMovies from '../../hooks/api/useGetMovies';
+import {SearchScreenNavigationProp} from '../../navigation/RootNavigator';
+import {Movie} from '../../types/api.type';
 
 function SearchScreen() {
   const [page, setPage] = useState(1);
@@ -17,15 +17,17 @@ function SearchScreen() {
 
   const navigation = useNavigation<SearchScreenNavigationProp>();
   const {data, isLoading, isFetched, isError} = useGetMovies(page);
+
   useEffect(() => {
     if (isFetched && data && !isError) {
       movieList[page - 1] = data;
-      setMovieList(movieList);
+      setMovieList([...movieList]);
       if (data.length < 20) {
         setEndReached(true);
       }
     }
-  }, [isFetched, data, isError, movieList, page]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [isFetched, data, isError]);
 
   const getMovieList = useMemo(() => {
     let list: Movie[] = [];
@@ -55,13 +57,14 @@ function SearchScreen() {
           source={{uri: `${Config.IMAGE_ROOT_PATH}${item.poster_path}`}}
           defaultSource={APP_IMAGES.defaultMovie}
           style={styles.movie}
+          testID={`movie-image-${item.id}`}
         />
       </TouchableOpacity>
     );
   };
 
   return (
-    <Box flex={1}>
+    <Box flex={1} testID="Movie-Search">
       <Header title="Pop Movies" />
       <FlatList
         ListEmptyComponent={isLoading ? null : <Text>No movies</Text>}

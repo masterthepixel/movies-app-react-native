@@ -18,7 +18,7 @@ export function Header({title}: HeaderProps) {
           ml={-4}
         />
       )}
-      <Text flex={1} color="white" fontSize={20}>
+      <Text flex={1} color="white" fontSize={20} bold>
         {title}
       </Text>
       <EllipsisVerticalIcon color="white" />
