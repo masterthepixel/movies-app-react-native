@@ -1,10 +1,27 @@
-This is a new [**React Native**](https://reactnative.dev) project, bootstrapped using [`@react-native-community/cli`](https://github.com/react-native-community/cli).
+# MovieApp
 
-# Getting Started
+This is a simple project for search movies and check the details.
 
->**Note**: Make sure you have completed the [React Native - Environment Setup](https://reactnative.dev/docs/environment-setup) instructions till "Creating a new application" step, before proceeding.
+## Main libraries
 
-## Step 1: Start the Metro Server
+- [@react-navigation](https://reactnavigation.org/docs/getting-started/)
+- [@tanstack/react-query](https://tanstack.com/query/v4/docs/react/overview)
+- [native-base](https://docs.nativebase.io/getting-started)
+
+## Setting Up Environment
+
+1. Follow [this](https://reactnative.dev/docs/environment-setup) guide for first steps including device/emulator setup
+   - Make sure to install [Watchman](https://facebook.github.io/watchman/docs/install)
+2. In VSCode install the following extensions for our linting rules:
+   - [Prettier](https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode)
+   - [ESLint](https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-eslint)
+   - [React Native Tools](https://marketplace.visualstudio.com/items?itemName=msjsdiag.vscode-react-native) _This is required to debug app and use env files_
+3. Clone the repo then run `npm ci` or `yarn install` in your terminal in the root directory of the project
+4. In ios folder, run `pod install` or `pod update` in your terminal.
+5. If you don’t already have an account on [TMDB](https://developer.themoviedb.org/reference/intro/getting-started), you will need to create one in order to request an API Key.
+6. Open duplicate `.env.example` then rename the duplicate to `.env`. Important: Add your TMDB API key as API_KEY like `API_KEY=xxxxxxxxxxxxxxxxxxxxx`.
+
+## Start the Metro Server
 
 First, you will need to start **Metro**, the JavaScript _bundler_ that ships _with_ React Native.
 
@@ -18,7 +35,7 @@ npm start
 yarn start
 ```
 
-## Step 2: Start your Application
+## Start your Application
 
 Let Metro Bundler run in its _own_ terminal. Open a _new_ terminal from the _root_ of your React Native project. Run the following command to start your _Android_ or _iOS_ app:
 
@@ -45,24 +62,6 @@ yarn ios
 If everything is set up _correctly_, you should see your new app running in your _Android Emulator_ or _iOS Simulator_ shortly provided you have set up your emulator/simulator correctly.
 
 This is one way to run your app — you can also run it directly from within Android Studio and Xcode respectively.
-
-## Step 3: Modifying your App
-
-Now that you have successfully run the app, let's modify it.
-
-1. Open `App.tsx` in your text editor of choice and edit some lines.
-2. For **Android**: Press the <kbd>R</kbd> key twice or select **"Reload"** from the **Developer Menu** (<kbd>Ctrl</kbd> + <kbd>M</kbd> (on Window and Linux) or <kbd>Cmd ⌘</kbd> + <kbd>M</kbd> (on macOS)) to see your changes!
-
-   For **iOS**: Hit <kbd>Cmd ⌘</kbd> + <kbd>R</kbd> in your iOS Simulator to reload the app and see your changes!
-
-## Congratulations! :tada:
-
-You've successfully run and modified your React Native App. :partying_face:
-
-### Now what?
-
-- If you want to add this new React Native code to an existing application, check out the [Integration guide](https://reactnative.dev/docs/integration-with-existing-apps).
-- If you're curious to learn more about React Native, check out the [Introduction to React Native](https://reactnative.dev/docs/getting-started).
 
 # Troubleshooting
 
