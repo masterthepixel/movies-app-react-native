@@ -8,6 +8,11 @@ This is a simple project for search movies and check the details.
 - [@tanstack/react-query](https://tanstack.com/query/v4/docs/react/overview)
 - [native-base](https://docs.nativebase.io/getting-started)
 
+## Screenshots
+
+<img src="assets/screenshots/movie-search.jpg" width="300" alt="Employee data" title="Employee Data title">
+<img src="assets/screenshots/movie-details.jpg" width="300" alt="Employee data" title="Employee Data title">
+
 ## Setting Up Environment
 
 1. Follow [this](https://reactnative.dev/docs/environment-setup) guide for first steps including device/emulator setup
