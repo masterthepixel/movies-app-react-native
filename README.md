@@ -4,9 +4,12 @@ This is a simple project for search movies and check the details.
 
 ## Main libraries
 
-- [@react-navigation](https://reactnavigation.org/docs/getting-started/)
-- [@tanstack/react-query](https://tanstack.com/query/v4/docs/react/overview)
-- [native-base](https://docs.nativebase.io/getting-started)
+- [React Native 0.72](https://reactnative.dev/docs/getting-started)
+- [TypeScript](https://www.typescriptlang.org/docs/handbook/typescript-in-5-minutes.html)
+- [React Navigation](https://reactnavigation.org/docs/getting-started/)
+- [React Query](https://tanstack.com/query/v4/docs/react/overview)
+- [NativeBase](https://docs.nativebase.io/getting-started)
+- [React Native Testing Library](https://testing-library.com/docs/react-native-testing-library/intro/)
 
 ## Screenshots
 
