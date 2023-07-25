@@ -7,8 +7,9 @@
     "ios": "react-native run-ios",
     "lint": "eslint . --ext .ts,.tsx",
     "lint:fix": "./node_modules/.bin/eslint . --ext .js,.ts,.tsx --fix",
-    "start": "react-native start",
-    "test": "jest"
+    "start": "yarn postinstall && react-native start",
+    "test": "jest",
+    "postinstall": "patch-package"
   },
   "dependencies": {
     "@react-native-community/masked-view": "^0.1.11",
@@ -17,6 +18,8 @@
     "@tanstack/react-query": "^4.32.0",
     "axios": "^1.4.0",
     "native-base": "^3.4.28",
+    "patch-package": "^7.0.2",
+    "postinstall-postinstall": "^2.1.0",
     "react": "18.2.0",
     "react-native": "0.72.3",
     "react-native-config": "^1.5.1",
