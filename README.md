@@ -1,6 +1,6 @@
 # MovieApp
 
-This is a simple project for search movies and check the details.
+This is a simple project for searching movies and checking the details.
 
 ## Main libraries
 
