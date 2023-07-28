@@ -27,8 +27,13 @@ This is a simple project for searching movies and checking the details.
 3. Clone the repo then run `npm ci` or `yarn install` in your terminal in the root directory of the project
 4. In ios folder, run `pod install` or `pod update` in your terminal.
 5. If you don’t already have an account on [TMDB](https://developer.themoviedb.org/reference/intro/getting-started), you will need to create one in order to request an API Key.
-6. Open duplicate `.env.example` then rename the duplicate to `.env` with adding your TMDB API key as API_KEY like `API_KEY=xxxxxxxxxxxxxxxxxxxxx`.
-   Important: Clear build cache whenever you change env file.
+6. Setup .env file:
+   - Open duplicate `.env.example` then rename the duplicate to `.env`.
+   - Copy your TMDB access token and API key on [Authentication](https://developer.themoviedb.org/reference/intro/authentication) page.
+   - Paste the access token and API key in .env file. <br>
+     `ACCESS_TOKEN=xxxxxxxxxxxxxxxxxxxxx`.<br>
+     `API_KEY=xxxxxxxxxxxxxxxxxxxxx`.<br>
+   - Important: Clear build cache whenever you change env file.
 
 ## Start the Metro Server
 

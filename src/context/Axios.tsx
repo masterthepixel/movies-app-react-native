@@ -18,12 +18,13 @@ export const AxiosContext: Context<ContextProps> = createContext(
 
 export const AxiosProvider = ({children}: ProviderProps) => {
   const [apiKey, setAPIKey] = useState('');
-  const {API_URL} = Config;
+  const {ACCESS_TOKEN, API_URL} = Config;
+  console.log({ACCESS_TOKEN});
   const api = axios.create({
     baseURL: API_URL,
     timeout: 60000,
     headers: {
-      Authorization: `Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI2OWQ5MmZiMmNkYjdkOTIwMDMxZWRmYzEyYjAyZTRkMCIsInN1YiI6IjY0YjlmZDI4ZWZkM2MyMDE0MDA0MDk2OSIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.joNxLaeWRjt-zi955OTdxTPdcf9oT4cn3eBNEAx3ORk`,
+      Authorization: `Bearer ${ACCESS_TOKEN}`,
     },
   });
 
