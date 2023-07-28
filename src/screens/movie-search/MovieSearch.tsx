@@ -38,7 +38,7 @@ function SearchScreen() {
   }, [movieList, page]);
 
   const loadMoreMovies = () => {
-    if (endReached || isLoading) {
+    if (endReached || isLoading || !getMovieList.length) {
       return;
     }
     setPage(page + 1);
@@ -63,14 +63,24 @@ function SearchScreen() {
     );
   };
 
+  const renderListEmpty = () => {
+    if (isLoading) return null;
+    if (isError) return <Text textAlign={'center'}>Error occured</Text>;
+    else return <Text textAlign={'center'}>No movies</Text>;
+  };
+
+  const renderListFooter = () => {
+    if (endReached) return <Text textAlign={'center'}>End reached</Text>;
+    else if (isLoading) return <Spinner mt={5} />;
+    return null;
+  };
+
   return (
     <Box flex={1} testID="Movie-Search">
       <Header title="Pop Movies" />
       <FlatList
-        ListEmptyComponent={isLoading ? null : <Text>No movies</Text>}
-        ListFooterComponent={
-          endReached ? <Text>End reached</Text> : <Spinner mt={5} />
-        }
+        ListEmptyComponent={renderListEmpty}
+        ListFooterComponent={renderListFooter}
         data={getMovieList}
         renderItem={renderMovieItem}
         numColumns={2}

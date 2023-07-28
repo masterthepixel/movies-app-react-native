@@ -1,4 +1,4 @@
-import axios, {AxiosInstance} from 'axios';
+import axios, {AxiosError, AxiosInstance, AxiosResponse} from 'axios';
 import React, {Context, createContext, useState} from 'react';
 
 interface ContextProps {
@@ -17,10 +17,22 @@ export const AxiosContext: Context<ContextProps> = createContext(
 
 export const AxiosProvider = ({children}: ProviderProps) => {
   const [apiKey, setAPIKey] = useState('');
+
   const api = axios.create({
     baseURL: process.env.API_URL,
     timeout: 60000,
   });
+
+  api.interceptors.response.use(
+    (response: AxiosResponse) => {
+      return response;
+    },
+    async (error: AxiosError) => {
+      console.log(error?.request?.status, error);
+      return Promise.reject(error);
+    },
+  );
+
   return (
     <AxiosContext.Provider value={{api, apiKey, setAPIKey}}>
       {children}
