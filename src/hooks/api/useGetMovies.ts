@@ -12,10 +12,10 @@ interface IResponse {
 
 const useGetMovies = (page: number) => {
   const axios = useContext(AxiosContext);
-  const {API_URL, API_KEY} = Config;
+  const {API_KEY} = Config;
   return useQuery([ReactQueryKeys.GET_POPULAR_MOVIES, page], async () => {
     const response = await axios.api.get<IResponse>(
-      `${API_URL}/popular?api_key=${API_KEY}&page=${page}`,
+      `movie/popular?api_key=${API_KEY}&page=${page}`,
     );
     return response.data.results || [];
   });

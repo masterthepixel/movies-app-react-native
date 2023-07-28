@@ -8,10 +8,10 @@ import {ReactQueryKeys} from '../../types/reactquery.type';
 
 const useGetMovieDetails = (movieId: number) => {
   const axios = useContext(AxiosContext);
-  const {API_URL, API_KEY} = Config;
+  const {API_KEY} = Config;
   return useQuery([ReactQueryKeys.GET_MOVIE_DETAILS, movieId], async () => {
     const response = await axios.api.get<Movie>(
-      `${API_URL}/${movieId}?api_key=${API_KEY}`,
+      `movie/${movieId}?api_key=${API_KEY}`,
     );
     return response.data;
   });
